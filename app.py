@@ -7,9 +7,16 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello_world():
-    return render_template("index.html")
+    # return render_template("index.html")
+    start_time = time.time()
+    print("Task started at", start_time)
+    # Simulate a long-running task
+    time.sleep(60 * 15)  # Sleep for 15 minutes
+    end_time = time.time()
+    print("Task completed at", end_time)
+    return jsonify({'message': 'Task completed successfully'})
     
-@app.route('/long_running_task', methods=['POST'])
+@app.route('/long_running_task', methods=['GET'])
 def long_running_task():
     start_time = time.time()
     print("Task started at", start_time)
